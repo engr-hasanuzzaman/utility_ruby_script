@@ -3,6 +3,8 @@ GEM
   specs:
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    colorize (0.8.1)
+    crypt (2.2.1)
     ffi (1.9.14)
     rubyzip (1.2.0)
     selenium-webdriver (3.0.5)
@@ -17,7 +19,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize (~> 0.8.1)
+  crypt (~> 2.2, >= 2.2.1)
   watir (~> 6.0, >= 6.0.3)
-
-BUNDLED WITH
-   1.13.6
