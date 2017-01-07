@@ -43,11 +43,13 @@ class Bootstrap
           end
         end
 
-    Readline.completion_proc	=	completion								#	Set	completion	process
-    Readline.completion_append_character	=	'	'			#	Make	sure	to	add	a	space	after	completion
+    #	Set	completion	process
+    Readline.completion_proc	=	completion
 
-    while	line	=	Readline.readline('->	',	true)		#	Start	console	with	character	->	and	make
-      add_hist	=	true
+    #	Make	sure	to	add	a	space	after	completion
+    Readline.completion_append_character	=	'	'
+
+    while	line	=	Readline.readline('-> ',	true)
       puts	completion.call
       break	if	line	=~	/^quit.*/i	or	line	=~	/^exit.*/i
     end
@@ -56,4 +58,11 @@ end
 
 
 puts 'Please enter your encryption key to decrypt configuration file'.c_info
-encription_key = Readline.readline('->	',	true)
+encription_key = Readline.readline('-> ',	true)
+
+if encription_key.nil? || encription_key.size < 1
+  puts 'You does not provide any password.
+  Application will not work if encryption password needed'.c_info
+end
+
+Bootstrap.new(encription_key).run_command
