@@ -5,8 +5,8 @@ require_relative 'color_info'
 
 include Utility
 
-class FileEncrypt
-  NAME = 'file encryption'
+class FileDecrypt
+  NAME = 'file decryption'
 
   attr_accessor :s_abs_path, :s_file_name, :s_dir, :t_file_name, :t_dir, :t_abs_path, :s_key
 
@@ -20,19 +20,19 @@ class FileEncrypt
         perform
       else
         error_msg('your entered secrete key is not valid')
-        exit_msg
+        exit_msg("now your are exiting #{self.class::NAME}, hope come back soon")
       end
     else
       error_msg("there is no file  #{s_abs_path}")
       help
-      exit_msg
+      exit_msg("now your are exiting #{self.class::NAME}, hope come back soon")
     end
   end
 
   private
 
   def take_source_file_name
-    instruction_msg 'Enter file absolute file path that you want to convert'
+    instruction_msg 'Enter file absolute file path that you want to decrypt'
     path = Readline.readline('-> '.c_instruction, true)
     # log " entered path is #{path}"
     self.s_abs_path = File.expand_path(path)
@@ -40,7 +40,8 @@ class FileEncrypt
     self.s_file_name = s_abs_path.split('/')[-1]
     # log "abs path is #{s_abs_path}"
     # log "source directory is #{s_dir}"
-    self.t_abs_path = "#{s_dir}/encrypted_#{s_file_name}"
+
+    self.t_abs_path = "#{s_dir}/decrypted_#{s_file_name.split('_')[-1]}"
   end
 
   def valid_file?
@@ -49,11 +50,12 @@ class FileEncrypt
 
   def take_target_file_name
     self.t_file_name =
-        Readline.readline(instruction_msg('Enter your encryption file name: '), true)
+        Readline.readline(instruction_msg('Enter your encrypted file name: '), true)
   end
 
+
   def take_encryption_key
-    instruction_msg('Enter your encryption key (1-56 bytes)(N.B: remember this): ')
+    instruction_msg('Enter your decryption key that you use to encrypt: ')
     self.s_key = Readline.readline('-> '.c_instruction, true)
   end
 
@@ -63,25 +65,21 @@ class FileEncrypt
 
   # provide help for encryption
   def help
-    msg 'Usage: <filename.ext> that has to be absolute path'
-    msg 'Example: ~/text.txt'
-    msg 'Next enter secrete key that will be used as your password to decrypt your file'
+    msg 'Usage: <filename.ext> that has to be decrypted (absolute path)'
+    msg 'Example: ~/encrypted_text.txt'
+    msg 'Next enter secrete key that you had used to encrypt your file'
   end
 
   def perform
     # log "t_abs_path is #{t_abs_path}"
+    # log "s_abs_path is #{s_abs_path}"
     begin
       blowfish = Crypt::Blowfish.new(s_key)
-      blowfish.encrypt_file(s_abs_path, t_abs_path)
-      suc_msg('Encryption SUCCESS!')
-      exit_msg
+      blowfish.decrypt_file(s_abs_path, t_abs_path)
+      suc_msg('Decryption SUCCESS!')
     rescue Exception => e
-      error_msg("An error occurred during encryption: \n #{e}")
+      error_msg("An error occurred during decryption: \n #{e}")
     end
-  end
-
-  def exit
-
   end
 end
 

@@ -2,6 +2,8 @@ require 'colorize'
 require	'readline'
 require_relative 'color_info'
 require_relative 'file_encrypt'
+require_relative 'file_decrypt'
+require_relative 'utility'
 
 #	Prevent	Ctrl+C	for	exiting
 trap('INT',	'SIG_IGN')
@@ -11,7 +13,9 @@ class Bootstrap
   # 	List	of	commands
   #
 
-  CMDS	=	[	'help',	'file encryption',	'ls',	'exit'	].sort
+  NAME = 'ASSISTANT'
+  CMDS	=	%w[	help encryption ls exit decryption t_login].sort
+  include Utility
 
   #
   # attributes
@@ -32,14 +36,14 @@ class Bootstrap
           case
             when	Readline.line_buffer	=~	/help.*/i
               puts	"Available	commands:\n"	+	"#{CMDS.join("\t")}"
-            when	Readline.line_buffer	=~	/rubyfu.*/i
-              puts	"Rubyfu,	where	Ruby	goes	evil!"
             when	Readline.line_buffer	=~	/ls.*/i
               puts	`ls`
-            when Readline.line_buffer =~ /file encryption/
+            when Readline.line_buffer =~ /encryption/
               FileEncrypt.new.run
+            when Readline.line_buffer =~ /decryption/
+              FileDecrypt.new.run
             when	Readline.line_buffer	=~	/exit.*/i
-              puts	'Exiting..'
+              exit_msg
               exit	0
             else
               CMDS.grep(	/^#{Regexp.escape(str)}/i	)	unless	str.nil?
@@ -52,20 +56,11 @@ class Bootstrap
     #	Make	sure	to	add	a	space	after	completion
     Readline.completion_append_character	=	'	'
 
-    while	line	=	Readline.readline('new task -> ',	true)
+    while	line	=	Readline.readline('new task -> '.c_instruction,	true)
       puts	completion.call
       break	if	line	=~	/^quit.*/i	or	line	=~	/^exit.*/i
     end
   end
 end
-
-#
-# puts 'Please enter your encryption key to decrypt configuration file'.c_info
-# encription_key = Readline.readline('-> ',	true)
-#
-# if encription_key.nil? || encription_key.size < 1
-#   puts 'You does not provide any password.
-#   Application will not work if encryption password needed'.c_info
-# end
 
 Bootstrap.new.run_command
