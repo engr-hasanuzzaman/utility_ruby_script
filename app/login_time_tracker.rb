@@ -4,7 +4,7 @@ user_name = 'hasanuzzaman@nascenia.com'
 password = '284sumon'
  
 # Create a new browser window
-browser = Watir::Browser.new(:firefox)
+browser = Watir::Browser.new(:chrome)
  
 # Navigate to the landingpage
 browser.goto 'http://timetracker.nascenia.com'

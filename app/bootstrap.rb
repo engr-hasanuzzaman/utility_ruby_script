@@ -1,6 +1,7 @@
 require 'colorize'
 require	'readline'
 require_relative 'color_info'
+require_relative 'file_encrypt'
 
 #	Prevent	Ctrl+C	for	exiting
 trap('INT',	'SIG_IGN')
@@ -10,7 +11,7 @@ class Bootstrap
   # 	List	of	commands
   #
 
-  CMDS	=	[	'help',	'rubyfu',	'ls',	'exit'	].sort
+  CMDS	=	[	'help',	'file encryption',	'ls',	'exit'	].sort
 
   #
   # attributes
@@ -22,7 +23,7 @@ class Bootstrap
   #
 
   def initialize(encryption_key = nil)
-    @encryption_key = encryption_key
+    # @encryption_key = encryption_key
   end
 
   def run_command
@@ -35,6 +36,8 @@ class Bootstrap
               puts	"Rubyfu,	where	Ruby	goes	evil!"
             when	Readline.line_buffer	=~	/ls.*/i
               puts	`ls`
+            when Readline.line_buffer =~ /file encryption/
+              FileEncrypt.new.run
             when	Readline.line_buffer	=~	/exit.*/i
               puts	'Exiting..'
               exit	0
@@ -49,20 +52,20 @@ class Bootstrap
     #	Make	sure	to	add	a	space	after	completion
     Readline.completion_append_character	=	'	'
 
-    while	line	=	Readline.readline('-> ',	true)
+    while	line	=	Readline.readline('new task -> ',	true)
       puts	completion.call
       break	if	line	=~	/^quit.*/i	or	line	=~	/^exit.*/i
     end
   end
 end
 
+#
+# puts 'Please enter your encryption key to decrypt configuration file'.c_info
+# encription_key = Readline.readline('-> ',	true)
+#
+# if encription_key.nil? || encription_key.size < 1
+#   puts 'You does not provide any password.
+#   Application will not work if encryption password needed'.c_info
+# end
 
-puts 'Please enter your encryption key to decrypt configuration file'.c_info
-encription_key = Readline.readline('-> ',	true)
-
-if encription_key.nil? || encription_key.size < 1
-  puts 'You does not provide any password.
-  Application will not work if encryption password needed'.c_info
-end
-
-Bootstrap.new(encription_key).run_command
+Bootstrap.new.run_command
