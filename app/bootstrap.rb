@@ -26,10 +26,6 @@ class Bootstrap
   # instance methods
   #
 
-  def initialize(encryption_key = nil)
-    # @encryption_key = encryption_key
-  end
-
   def run_command
     completion	=
         proc	do	|str|
