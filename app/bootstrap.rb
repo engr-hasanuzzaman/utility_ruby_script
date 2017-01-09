@@ -14,7 +14,7 @@ class Bootstrap
   #
 
   NAME = 'ASSISTANT'
-  CMDS	=	%w[	help encryption ls exit decryption t_login].sort
+  CMDS	=	%w[	help encryption ls exit decryption t_login kill3000].sort
   include Utility
 
   #
@@ -38,6 +38,8 @@ class Bootstrap
               FileEncrypt.new.run
             when Readline.line_buffer =~ /decryption/
               FileDecrypt.new.run
+            when Readline.line_buffer =~ /kill3000/
+              `fuser -k -n tcp 3000`
             when	Readline.line_buffer	=~	/exit.*/i
               exit_msg
               exit	0
