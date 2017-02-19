@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'colorize'
 require	'readline'
 require_relative 'color_info'
