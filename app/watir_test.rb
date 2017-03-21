@@ -29,7 +29,7 @@ MENU_NAME = %W(Home Open-Source Blog)
 #   end	
 	
 # end
-
+browser = Watir::Browser.new(:firefox)
 browser.goto 'https://www.google.com/'
 browser.link(text: 'Gmail').wait_until_present.click
 sleep(10)

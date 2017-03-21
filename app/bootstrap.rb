@@ -16,7 +16,7 @@ class Bootstrap
   #
 
   NAME = 'ASSISTANT'
-  CMDS	=	%w[	help encryption ls exit decryption t_login kill3000 clear_s].sort
+  CMDS	=	%w[	help encryption ls exit decryption t_login kill3000 clear_s disk].sort
   include Utility
 
   #
@@ -42,6 +42,9 @@ class Bootstrap
               FileDecrypt.new.run
             when Readline.line_buffer =~ /kill3000/
               `fuser -k -n tcp 3000`
+            when Readline.line_buffer =~ /disk/
+              puts "------------------- this is "
+              `nohup baobab &`
             when Readline.line_buffer =~ /clear/
               `clear`
             when	Readline.line_buffer	=~	/exit.*/i
