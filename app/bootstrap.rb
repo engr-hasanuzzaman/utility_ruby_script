@@ -5,6 +5,7 @@ require	'readline'
 require_relative 'color_info'
 require_relative 'file_encrypt'
 require_relative 'file_decrypt'
+require_relative 'remove_files'
 require_relative 'utility'
 
 #	Prevent	Ctrl+C	for	exiting
