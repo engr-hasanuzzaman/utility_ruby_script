@@ -41,7 +41,7 @@ module Utility
     msg(msg, color: 'c_error')
   end
 
-  def log(msg)
-    puts msg
+  def log(message)
+    error_msg(message)
   end
 end
