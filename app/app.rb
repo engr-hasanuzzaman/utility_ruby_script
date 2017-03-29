@@ -71,6 +71,10 @@ class App
   end
 
   def load_secrete_key
-    @env = LoadSecrete.new('/config/secrete.yml')
+    root_path = File.expand_path("../", __dir__)
+    # puts "****************88 root path is #{root_path}"
+    path = "#{root_path}/config/secrete.yml"
+    # puts "the path is *************** #{path}"
+    @env = LoadSecrete.new(path)
   end
 end

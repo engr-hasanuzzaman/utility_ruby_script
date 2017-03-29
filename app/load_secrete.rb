@@ -21,12 +21,12 @@ class LoadSecrete
 
   def parse_yml
     unless File.exist?(@file_path)
-      log('you have no file named config/app.yml')
+      log('you have no file named config/secrete.yml')
       log('Please create app.yml on config/ folder that will contain your secrete key.')
 
       return false
     end
 
-    @values = YAML.load_file(@file)
+    @values = YAML.load_file(@file_path)
   end
 end
