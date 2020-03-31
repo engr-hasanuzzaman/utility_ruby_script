@@ -51,6 +51,7 @@ build-iPhoneSimulator/
 .idea/
 /config/app.yml
 /config/secrete.yml
+*.out
 
 
 
