@@ -6,7 +6,7 @@
 // Please do not close the browser untill all votes are done. See the console log
 
 var i = 0;
-var sleep_time = 20000; // in milisecond that means 40 seconds
+var sleep_time = 20000; // in milisecond that means 20 seconds
 (function loop() {
     $('.btn.btn-orange.m-1[data-company="65586"]').click();
     $('#vote-form-email').val(emails[i]);
