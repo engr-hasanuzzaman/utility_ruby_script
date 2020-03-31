@@ -3,7 +3,7 @@
 // 3. write "var emails = " and pase your formated email that you will get from Sumon
 // the code will be like var emails = ['email1', 'email2']
 // 4. Copy and Past the below code on your console and press enter button
-// 
+// Please do not close the browser untill all votes are done. See the console log
 
 var i = 0;
 var sleep_time = 40000; // in milisecond that means 40 seconds
