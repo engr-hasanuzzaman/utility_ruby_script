@@ -12,6 +12,6 @@ var sleep_time = 40000; // in milisecond that means 40 seconds
     $('.btn.btn-orange[type="submit"').click();
 
     if (++i < emails.length) {
-        setTimeout(loop, );
+        setTimeout(loop, sleep_time);
     }
 })();
