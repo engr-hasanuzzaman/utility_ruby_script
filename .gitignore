@@ -52,6 +52,7 @@ build-iPhoneSimulator/
 /config/app.yml
 /config/secrete.yml
 *.out
+*.xlsx
 
 
 

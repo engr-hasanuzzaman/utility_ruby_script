@@ -6,12 +6,13 @@
 // Please do not close the browser untill all votes are done. See the console log
 
 var i = 0;
-var sleep_time = 40000; // in milisecond that means 40 seconds
+var sleep_time = 20000; // in milisecond that means 40 seconds
 (function loop() {
     $('.btn.btn-orange.m-1[data-company="65586"]').click();
     $('#vote-form-email').val(emails[i]);
     $('.btn.btn-orange[type="submit"').click();
-    console.log('current email number is ' + i);
+    var serial = i + 1;
+    console.log('current email serial number is ' + serial + " out of " + emails.length);
     if (++i < emails.length) {
         setTimeout(loop, sleep_time);
     }
