@@ -4,11 +4,17 @@ GEM
     childprocess (0.6.1)
       ffi (~> 1.0, >= 1.0.11)
     colorize (0.8.1)
+    creek (2.5.1)
+      nokogiri (>= 1.10.0)
+      rubyzip (>= 1.0.0)
     crypt (2.2.1)
     ffi (1.9.17)
     ftpd (2.0.1)
       memoizer (~> 1.0)
     memoizer (1.0.2)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
     rubyzip (1.2.0)
     selenium-webdriver (3.0.7)
       childprocess (~> 0.5)
@@ -23,9 +29,10 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 0.8.1)
+  creek
   crypt (~> 2.2, >= 2.2.1)
   ftpd
   watir (~> 6.0, >= 6.0.3)
 
 BUNDLED WITH
-   1.13.1
+   1.17.2

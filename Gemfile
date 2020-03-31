@@ -11,3 +11,5 @@ gem 'colorize', '~> 0.8.1'
 
 # ftp server
 gem 'ftpd'
+
+gem 'creek'
