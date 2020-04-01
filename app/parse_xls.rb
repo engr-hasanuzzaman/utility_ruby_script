@@ -1,5 +1,5 @@
 require 'creek'
-file_name = 'rafay.xlsx';
+file_name = 'seedstar voting list 4.xlsx';
 file_path = File.join(File.dirname(__FILE__), file_name);
 creek = Creek::Book.new file_path
 sheet = creek.sheets[0]

@@ -6,14 +6,14 @@
 // Please do not close the browser untill all votes are done. See the console log
 
 var i = 0;
-var sleep_time = 20000; // in milisecond that means 20 seconds
+var sleep_time = 1000; // in milisecond that means 20 seconds
 (function loop() {
-    $('.btn.btn-orange.m-1[data-company="65586"]').click();
-    $('#vote-form-email').val(emails[i]);
-    $('.btn.btn-orange[type="submit"').click();
-    var serial = i + 1;
-    console.log('current email serial number is ' + serial + " out of " + emails.length);
-    if (++i < emails.length) {
-        setTimeout(loop, sleep_time);
-    }
+  $('.btn.btn-orange.m-1[data-company="65586"]').click();
+  $('#vote-form-email').val(emails[i]);
+  $('.btn.btn-orange[type="submit"').click();
+  var serial = i + 1;
+  console.log('current email serial number is ' + serial + " out of " + emails.length);
+  if (++i < emails.length) {
+    setTimeout(loop, sleep_time);
+  }
 })();
